@@ -1,6 +1,6 @@
 {
   "name": "@4everland/hosting-mcp",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "4EVERLAND Hosting MCP Server Tool",
   "scripts": {
     "build": "tsc",
@@ -28,12 +28,12 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/4everland/4everland-hosting-mcp-server.git"
+    "url": "git+https://github.com/4everland/4everland-hosting-mcp.git"
   },
   "bugs": {
-    "url": "https://github.com/4everland/4everland-hosting-mcp-server/issues"
+    "url": "https://github.com/4everland/4everland-hosting-mcp/issues"
   },
-  "homepage": "https://github.com/4everland/4everland-hosting-mcp-server#readme",
+  "homepage": "https://github.com/4everland/4everland-hosting-mcp#readme",
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.12.1",
     "archiver": "^7.0.1",
