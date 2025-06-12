@@ -1,0 +1,9 @@
+# Tool
+.idea
+
+# Deps
+node_modules
+package-lock.json
+
+# Build
+build
