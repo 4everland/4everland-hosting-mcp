@@ -1,6 +1,6 @@
 # 4EVERLAND Hosting MCP Server
 
-[![Version](https://img.shields.io/badge/version-0.1.0-blue.svg)](https://www.npmjs.com/package/@4everland/4ever-mcpserver)
+[![Version](https://img.shields.io/badge/version-0.1.2-blue.svg)](https://www.npmjs.com/package/@4everland/hosting-mcp)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Node](https://img.shields.io/badge/node-%3E%3D20.12.2-green.svg)](https://nodejs.org/)
 

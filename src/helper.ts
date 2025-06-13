@@ -93,7 +93,7 @@ export async function createProject(name: string, platform: string): Promise<str
     }
 }
 
-export async function deployProject(projectId: string, zipContent: Buffer): Promise<string> {
+export async function deployProject(projectId: string, zipContent: Buffer): Promise<any> {
     const token = ENV_TOKEN_VALUE;
     const apiBaseUrl = ENV_API_URL_VALUE;
 
