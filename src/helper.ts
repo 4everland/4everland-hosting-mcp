@@ -18,6 +18,8 @@ const API_DEPLOY_TYPE = 'CLI';
 const API_MODE = '0';
 const API_PROJECT_ENDPOINT = '/project';
 const API_DEPLOY_ENDPOINT = '/deploy';
+const API_SEARCH_ENDPOINT = '/search';
+const API_DETAIL_ENDPOINT = '/detail';
 
 // File constants
 const ZIP_FILENAME = 'dist.zip';
@@ -119,6 +121,64 @@ export async function deployProject(projectId: string, zipContent: Buffer): Prom
         }
 
         throw new Error(`Failed to deploy project: ${JSON.stringify(response.data)}`);
+    } catch (error) {
+        if (axios.isAxiosError(error)) {
+            throw new Error(`HTTP error: ${error.message}`);
+        }
+        throw error;
+    }
+}
+
+export async function searchProject(keyword: string): Promise<any> {
+    const token = ENV_TOKEN_VALUE;
+    const apiBaseUrl = ENV_API_URL_VALUE;
+
+    if (!token || !apiBaseUrl) {
+        throw new Error(`${ENV_TOKEN} and ${ENV_API_URL} environment variables must be set`);
+    }
+
+    try {
+        const response = await axios.get(`${apiBaseUrl}${API_SEARCH_ENDPOINT}?keyword=${encodeURIComponent(keyword)}`, {
+            headers: {
+                'Accept-Version': API_ACCEPT_VERSION,
+                'token': token
+            }
+        });
+
+        if (response.data.code === SUCCESS_CODE) {
+            return JSON.parse(response.data.content)?.data;
+        }
+
+        throw new Error(`Failed to get project: ${JSON.stringify(response.data)}`);
+    } catch (error) {
+        if (axios.isAxiosError(error)) {
+            throw new Error(`HTTP error: ${error.message}`);
+        }
+        throw error;
+    }
+}
+
+export async function viewDetail(id:string): Promise<any> {
+    const token = ENV_TOKEN_VALUE;
+    const apiBaseUrl = ENV_API_URL_VALUE;
+
+    if (!token || !apiBaseUrl) {
+        throw new Error(`${ENV_TOKEN} and ${ENV_API_URL} environment variables must be set`);
+    }
+
+    try {
+        const response = await axios.get(`${apiBaseUrl}${API_DETAIL_ENDPOINT}?id=${id}`, {
+            headers: {
+                'Accept-Version': API_ACCEPT_VERSION,
+                'token': token
+            }
+        });
+
+        if (response.data.code === SUCCESS_CODE) {
+            return JSON.parse(response.data.content)?.data;
+        }
+
+        throw new Error(`Failed to get project: ${JSON.stringify(response.data)}`);
     } catch (error) {
         if (axios.isAxiosError(error)) {
             throw new Error(`HTTP error: ${error.message}`);

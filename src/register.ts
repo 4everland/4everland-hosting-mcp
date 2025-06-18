@@ -2,7 +2,7 @@ import {McpServer} from "@modelcontextprotocol/sdk/server/mcp.js";
 import * as fs from 'fs';
 import * as path from 'path';
 import {z} from 'zod';
-import {createProject, createProjectStructure, createZipFromDirectory, deployProject} from "./helper.js";
+import {createProject, createProjectStructure, createZipFromDirectory, deployProject, searchProject, viewDetail} from "./helper.js";
 
 export interface IRegister {
     server: McpServer;
@@ -46,6 +46,74 @@ export const register = ({server}: IRegister) => {
                         {
                             type: "text",
                             text: `Failed to deploy: ${error instanceof Error ? error.message : String(error)}`
+                        }
+                    ],
+                    status: "error"
+                };
+            }
+        }
+    );
+
+    server.tool(
+        "search project",
+        "Search project using keywords",
+        {
+            keyword: z.string().describe("searching keywords")
+        },
+        async({keyword}) => {
+            try {
+                const searchResp = await searchProject(keyword);
+
+                return {
+                    content: [
+                        {
+                            type: "text",
+                            text: `The project list returns ${JSON.stringify(searchResp)}`,
+                        }
+                    ],
+                    status: "success"
+                };
+            } catch (error) {
+                console.error("Failed to get list:", error);
+                return {
+                    content: [
+                        {
+                            type: "text",
+                            text: `Failed to get list: ${error instanceof Error ? error.message : String(error)}`
+                        }
+                    ],
+                    status: "error"
+                };
+            }
+        }
+    )
+
+    server.tool(
+        "view project detail",
+        "view project detail",
+        {
+            id: z.string().describe("id of project")
+        },
+        async({id}) => {
+            try {
+                const detail = await viewDetail(id);
+
+                return {
+                    content: [
+                        {
+                            type: "text",
+                            text: `The project list returns ${JSON.stringify(detail)}`,
+                        }
+                    ],
+                    status: "success"
+                };
+            } catch (error) {
+                console.error("Failed to get list:", error);
+                return {
+                    content: [
+                        {
+                            type: "text",
+                            text: `Failed to get list: ${error instanceof Error ? error.message : String(error)}`
                         }
                     ],
                     status: "error"
