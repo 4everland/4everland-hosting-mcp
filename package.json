@@ -1,6 +1,6 @@
 {
   "name": "@4everland/hosting-mcp",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "4EVERLAND Hosting MCP Server Tool",
   "scripts": {
     "build": "tsc",
