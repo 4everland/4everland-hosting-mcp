@@ -55,7 +55,7 @@ export const register = ({server}: IRegister) => {
     );
 
     server.tool(
-        "search project",
+        "search_project",
         "Search project using keywords",
         {
             keyword: z.string().describe("searching keywords")
@@ -89,7 +89,7 @@ export const register = ({server}: IRegister) => {
     )
 
     server.tool(
-        "view project detail",
+        "view_project_detail",
         "view project detail",
         {
             id: z.string().describe("id of project")
